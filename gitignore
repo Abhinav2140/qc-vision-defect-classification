@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Project-specific
+qc_inspections.db
+*.log
+
+# Uncomment if you don't want the trained model checkpoint tracked in git
+# (it's ~43MB — under GitHub's 100MB hard limit, but consider Git LFS if it grows)
+# outputs/neu_defect_model.pt
