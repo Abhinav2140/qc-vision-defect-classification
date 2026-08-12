@@ -1,13 +1,3 @@
-"""
-build_notebook.py — generates notebooks/defect_classification_report.ipynb.
-
-Run this once to (re)build the notebook structure, then execute it with:
-    jupyter nbconvert --to notebook --execute --inplace defect_classification_report.ipynb
-
-Kept separate from the .ipynb itself so the report's structure is version-
-controllable as plain Python instead of a diff-unfriendly JSON blob.
-"""
-
 import nbformat as nbf
 
 nb = nbf.v4.new_notebook()
