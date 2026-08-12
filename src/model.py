@@ -1,30 +1,4 @@
-"""
-model.py — Multi-task defect inspection CNN.
 
-Backbone: transfer learning from EfficientNet-B0 or ResNet50 (ImageNet-pretrained),
-with three heads trained jointly:
-
-  1. defect_type   -> multi-class classification (softmax)
-                      classes: {ok, scratch, dent, dimensional_error,
-                                missing_component, color_inconsistency, contamination}
-  2. severity       -> regression head, outputs a continuous score in [0, 1]
-                      (0 = imperceptible, 1 = catastrophic)
-  3. localization    -> auxiliary bounding-box regression (x, y, w, h), normalized
-                      to [0,1], used to draw the defect region on the dashboard /
-                      operator HMI. Optional — can be disabled if you don't have
-                      box annotations yet (see `use_localization`).
-
-Why a shared backbone with multiple heads instead of three separate models:
-  - One forward pass per frame is required to keep up with line speed
-    (typical machine-vision cameras run 15-60 fps; a 3-model pipeline would
-    triple inference latency for no accuracy benefit, since the same visual
-    features — edges, texture, color histograms — are useful for all three
-    tasks).
-  - Joint training with a shared trunk acts as a mild regularizer and
-    generally improves the classification head's accuracy on small
-    domain-specific datasets, which is the norm in manufacturing QC (you
-    rarely have more than a few thousand labeled defect images per line).
-"""
 
 import torch
 import torch.nn as nn
